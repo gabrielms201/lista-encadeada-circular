@@ -15,7 +15,7 @@ private:
 
 inline std::ostream& operator <<(std::ostream& str, const Soldier& soldier)
 {
-	return str << soldier.getName() << "," << soldier.getId();
+	return str << soldier.getName();
 }
 
 inline bool operator == (const Soldier& s1, const Soldier& s2)

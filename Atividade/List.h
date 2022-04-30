@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include <ostream>
+#include <assert.h>
 
 typedef Soldier TYPE;
 
@@ -39,9 +40,13 @@ public:
 	bool insert(TYPE& data);
 	bool remove(TYPE& data);
 	bool removeById(unsigned int id);
+	bool removeByName(std::string name);
 	bool clear();
 	bool find(const TYPE& data) const;
-	bool findById(unsigned int id) const;
+	Soldier& findById(unsigned int id) const;
+	Soldier& findByName(std::string name) const;
+	Soldier& List::findByPosition(unsigned int position) const;
+	unsigned int List::findPosition(Soldier& soldier) const;
 	unsigned int getSize() const { return _size; }
 	std::string toString() const;
 private:

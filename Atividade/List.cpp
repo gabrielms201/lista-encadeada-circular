@@ -103,6 +103,7 @@ bool List::remove(TYPE& data)
 	bkpPtr->setNextNode(ptr->getNextNode());
 	_size--;
 	delete ptr;
+	return true;
 }
 // Remove o elemento da lista pelo id do Soldado
 bool List::removeById(unsigned int id)
@@ -148,6 +149,52 @@ bool List::removeById(unsigned int id)
 	bkpPtr->setNextNode(ptr->getNextNode());
 	_size--;
 	delete ptr;
+	return true;
+}
+bool List::removeByName(std::string name)
+{
+	if (isEmpty())
+	{
+		return false;
+	}
+
+	Node* ptr = _head;
+	Node* bkpPtr = nullptr;
+
+	// Se a própria cabeça já guarda o elemento que precisamos, apenas removemos ele:
+	if (ptr->getData().getName() == name)
+	{
+		_head = ptr->getNextNode();
+
+		// Agora precisamos percorrer a lista para fazer com que o último elemento aponte para a nova cabeça:
+		bkpPtr = _head;
+		while (bkpPtr->getNextNode() != ptr && bkpPtr->getData().getName() != name)
+		{
+			//bkpPtr = wptr;
+			bkpPtr = bkpPtr->getNextNode();
+		}
+		bkpPtr->setNextNode(_head);
+		_size--;
+		delete ptr;
+		return true;
+	}
+	// Se esse não for o caso, a gente "anda" até encontrar (ou não), o elemento dado
+	while (ptr->getNextNode() != _head && ptr->getData().getName() != name)
+	{
+		bkpPtr = ptr;
+		ptr = ptr->getNextNode();
+	}
+
+	// Se o próximo nó for igual a cabeça, e o elemento for diferente do procurado, então não encontramos
+	if (ptr->getNextNode() == _head && ptr->getData().getName() != name)
+	{
+		return false;
+	}
+	// Caso encontramos, apenas precisamos apontar o nó anterior para o próximo do que desejamos remover
+	bkpPtr->setNextNode(ptr->getNextNode());
+	_size--;
+	delete ptr;
+	return true;
 }
 // Limpa a lista
 bool List::clear()
@@ -198,16 +245,16 @@ bool List::find(const TYPE &data) const
 	return false;
 }
 // Procura na lista um soldado pelo ID
-bool List::findById(unsigned int id) const
+Soldier& List::findById(unsigned int id) const
 {
 	if (isEmpty())
 	{
-		return false;
+		assert(0); // Soldado não encontrado
 	}
 	Node* ptr = _head;
 	if (ptr->getData().getId() == id)
 	{
-		return true;
+		return ptr->getData();
 	}
 	while (ptr->getNextNode() != _head && ptr->getData().getId() != id)
 	{
@@ -215,9 +262,63 @@ bool List::findById(unsigned int id) const
 	}
 	if (ptr != _head && ptr->getData().getId() == id)
 	{
-		return true;
+		return ptr->getData();
 	}
-	return false;
+	assert(0); // // Soldado não encontrado
+}
+// Encontra o soldado com o nome dado
+Soldier& List::findByName(std::string name) const
+{
+	if (isEmpty())
+	{
+		assert(0);
+	}
+	Node* ptr = _head;
+	if (ptr->getData().getName() == name)
+	{
+		return ptr->getData();
+	}
+	while (ptr->getNextNode() != _head && ptr->getData().getName() != name)
+	{
+		ptr = ptr->getNextNode();
+	}
+	if (ptr != _head && ptr->getData().getName() == name)
+	{
+		return ptr->getData();
+	}
+	assert(0);
+}
+// Encontra o soldado na posição X
+Soldier& List::findByPosition(unsigned int position) const
+{
+	Node* ptr = _head;
+	int count = 0;
+	do
+	{
+		if (count == position)
+		{
+			return ptr->getData();
+		}
+		count++;
+		ptr = ptr->getNextNode();
+	} while (ptr != _head);
+	assert(0);
+}
+// Encontra a posição do soldado
+unsigned int List::findPosition(Soldier& soldier) const
+{
+	Node* ptr = _head;
+	int count = 0;
+	do
+	{
+		if (ptr->getData() == soldier)
+		{
+			return count;
+		}
+		count++;
+		ptr = ptr->getNextNode();
+	} while (ptr != _head);
+	assert(0);
 }
 // Converte o conteúdo da lista para string
 std::string List::toString() const
