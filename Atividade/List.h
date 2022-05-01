@@ -19,7 +19,7 @@ RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
 #include <iostream>
 #include <sstream>
 #include <ostream>
-//#include <stdexcept>
+#include <stdexcept>
 
 typedef Soldier TYPE;
 
