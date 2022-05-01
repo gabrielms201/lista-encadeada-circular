@@ -10,7 +10,7 @@ RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
 
 #ifndef LIST_H
 #define LIST_H
-#if __cplusplus < 199711L
+#if !(__cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900))
 	#define nullptr NULL
 #endif
 
