@@ -58,7 +58,7 @@ public:
 	Soldier& findByPosition(unsigned int position) const;
 	unsigned int findPosition(Soldier& soldier) const;
 	unsigned int getSize() const { return _size; }
-	std::string toString() const;
+	std::string toString(const bool verbose = false) const;
 private:
 	unsigned int _size;
 	Node* _head;

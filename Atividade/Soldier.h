@@ -22,7 +22,6 @@ public:
 private:
 	const char* _name;
 	unsigned int _id;
-
 };
 
 inline std::ostream& operator <<(std::ostream& str, const Soldier& soldier)

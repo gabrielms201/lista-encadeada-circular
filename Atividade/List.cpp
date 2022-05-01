@@ -341,7 +341,7 @@ unsigned int List::findPosition(Soldier& soldier) const
 	throw std::range_error(str);
 }
 // Converte o conteúdo da lista para string
-std::string List::toString() const
+std::string List::toString(const bool verbose) const
 {
 	if (isEmpty())
 	{
@@ -352,12 +352,31 @@ std::string List::toString() const
 	// Se tiver mais de um elemento
 	while (ptr->getNextNode() != _head)
 	{
-		ss << ptr->getData();
-		ss << ";";
-		ptr = ptr->getNextNode();
+		if (verbose)
+		{
+			ss << ptr->getData().getId();
+			ss << "|";
+			ss << ptr->getData().getName();
+			ss << ";";
+			ptr = ptr->getNextNode();
+		}
+		else
+		{
+			ss << ptr->getData();
+			ss << ";";
+			ptr = ptr->getNextNode();
+		}
 	}
 	// Para o último nó:
-	ss << ptr->getData();
-
+	if (verbose)
+	{
+		ss << ptr->getData().getId();
+		ss << "|";
+		ss << ptr->getData().getName();
+	}
+	else
+	{
+		ss << ptr->getData();
+	}
 	return ss.str();
 }

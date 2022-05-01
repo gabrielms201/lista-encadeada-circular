@@ -13,6 +13,7 @@ RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
 
 #include "List.h"
 #include "Soldier.h"
+#include <string>
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -21,5 +22,6 @@ RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
 int main(int argc, char* argv[]);
 void tests();
 void josephus();
+void menu();
 
 #endif
