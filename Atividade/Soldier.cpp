@@ -1,3 +1,13 @@
+/*
+LICAO LISTA ENCADEADA CIRCULAR - ESTRUTURA DE DADOS
+GRUPO:
+
+MAYARA MENEGHETTI HONDA                  :  32152280
+PAULO HENRIQUE BRAGA CECHINEL            :  32151128
+RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
+
+*/
+
 #include "Soldier.h"
 
 Soldier::Soldier(const char* name, unsigned int id)

@@ -1,3 +1,13 @@
+/*
+LICAO LISTA ENCADEADA CIRCULAR - ESTRUTURA DE DADOS
+GRUPO:
+
+MAYARA MENEGHETTI HONDA                  :  32152280
+PAULO HENRIQUE BRAGA CECHINEL            :  32151128
+RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
+
+*/
+
 #ifndef LIST_H
 #define LIST_H
 #if __cplusplus < 199711L
@@ -9,7 +19,7 @@
 #include <iostream>
 #include <sstream>
 #include <ostream>
-#include <assert.h>
+//#include <stdexcept>
 
 typedef Soldier TYPE;
 
@@ -18,7 +28,7 @@ class Node
 {
 public:
 	Node(TYPE& data, Node* nextNode);
-	TYPE getData() const { return _data; }
+	TYPE& getData() { return _data; }
 	Node* getNextNode() const { return _nextNode; }
 	void setData(TYPE& data) { _data = data; }
 	void setNextNode(Node* nextNode) { _nextNode = nextNode; }
@@ -45,8 +55,8 @@ public:
 	bool find(const TYPE& data) const;
 	Soldier& findById(unsigned int id) const;
 	Soldier& findByName(std::string name) const;
-	Soldier& List::findByPosition(unsigned int position) const;
-	unsigned int List::findPosition(Soldier& soldier) const;
+	Soldier& findByPosition(unsigned int position) const;
+	unsigned int findPosition(Soldier& soldier) const;
 	unsigned int getSize() const { return _size; }
 	std::string toString() const;
 private:

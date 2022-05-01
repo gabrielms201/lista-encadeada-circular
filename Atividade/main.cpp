@@ -1,53 +1,76 @@
 /*
-… sorteado um n˙mero n e o nome de um soldado;
-Iniciando no soldado comeÁam a contar atÈ n no sentido hor·rio;
-O soldado onde parou a contagem È retirado do cÌrculo (coitado,
-est· morto!!!!);
-A contagem reinicia no soldado ao retirado do cÌrculo;
-O ˙ltimo soldado (o que sobrou) È o felizardo que sair· a cavalo e
-sobreviver·;
+LICAO LISTA ENCADEADA CIRCULAR - ESTRUTURA DE DADOS
+GRUPO:
+
+MAYARA MENEGHETTI HONDA                  :  32152280
+PAULO HENRIQUE BRAGA CECHINEL            :  32151128
+RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
+
+*/
+
+/*
+√â sorteado um n√∫mero n e o nome de um soldado;
+Iniciando no soldado come√ßam a contar at√© n no sentido hor√°rio;
+O soldado onde parou a contagem √© retirado do c√≠rculo (coitado,
+est√° morto!!!!);
+A contagem reinicia no soldado ao retirado do c√≠rculo;
+O √∫ltimo soldado (o que sobrou) √© o felizardo que sair√° a cavalo e
+sobreviver√°;
 Este problema pode ser resolvido utilizando-se uma LISTA
 ENCADEADA CIRCULAR!!!
 */
 
 
 #include "main.h"
-void sample()
+// Main
+int main(int argc, char* argv[])
 {
-	List list = List();
-	Soldier s1 = Soldier("Ricardo", 18);
-	Soldier s2 = Soldier("Paulin", 19);
-	Soldier s3 = Soldier("Gabriel", 20);
-	list.insert(s1);
-	list.insert(s2);
-	list.insert(s3);
+	try
+	{
+		std::cout << "Bem vindo ao programa que resolve o teste de josephus! Deseja realizar os testes funcionais antes? (1/0): ";
+		int resp;
+		std::cin >> resp;
+		if (resp)
+		{
+			tests();
+		}
+		std::cout << std::endl << "< ----------------------------------- > \n" << "Teste de Josephus: " << std::endl;
+		josephus();
+		system("pause");
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << "exception: " << e.what() << std::endl;
+	}
 
-	//list.remove(s1);
-	//list.remove(s2);
-	//list.remove(s3);
-	//list.clear();
-	//list.clear();
-	//std::cout << list.find(s1);
-	//std::cout << list;
-	std::cout << list.findPosition(s1);
-	std::cout << list.findPosition(s1);
-	std::cout << list.findPosition(s3);
 }
-
+// Teste de Josephus
 void josephus()
 {
 	List list = List();
-	list.insert(Soldier("Pedro", 1));
-	list.insert(Soldier("Paulo", 2));
-	list.insert(Soldier("Lucas", 3));
-	list.insert(Soldier("Ricardo", 4));
-	list.insert(Soldier("Gabriel", 5));
-	list.insert(Soldier("Arthur", 6));
-	list.insert(Soldier("Jailson", 7));
-	list.insert(Soldier("Victor", 8));
-	list.insert(Soldier("Nathan", 9));
-	list.insert(Soldier("Jorge", 10));
 
+
+	Soldier s1 = Soldier("Pedro", 1);
+	Soldier s2 = Soldier("Paulo", 2);
+	Soldier s3 = Soldier("Lucas", 3);
+	Soldier s4 = Soldier("Ricardo", 4);
+	Soldier s5 = Soldier("Gabriel", 5);
+	Soldier s6 = Soldier("Arthur", 6);
+	Soldier s7 = Soldier("Jailson", 7);
+	Soldier s8 = Soldier("Victor", 8);
+	Soldier s9 = Soldier("Nathan", 9);
+	Soldier s10 = Soldier("Jorge", 10);
+
+	list.insert(s1);
+	list.insert(s2);
+	list.insert(s3);
+	list.insert(s4);
+	list.insert(s5);
+	list.insert(s6);
+	list.insert(s7);
+	list.insert(s8);
+	list.insert(s9);
+	list.insert(s10);
 
 	std::string firstSoldierName;
 	unsigned int size = list.getSize();
@@ -70,9 +93,199 @@ void josephus()
 		std::cout << "\tSoldado morto: " << soldier << std::endl;
 		list.remove(soldier);
 	}
-	std::cout << "Soldado sobrevivente: " << list;
+	std::cout << "Soldado sobrevivente: " << list << std::endl;
 }
-int main(int argc, char** argv[])
+// Testes funcionais
+void tests()
 {
-	josephus();
+	std::cout << std::endl << "< -------- TESTES FUNCIONAIS -------- > ";
+
+	// Teste isEmpty
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao isEmpty: " << std::endl;
+		std::string empty = list.isEmpty() ? "true" : "false";
+		std::cout << "\tIsEmpty: " << empty;
+	}
+
+	// Teste isFull
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao isFull: " << std::endl;
+		std::string empty = list.isFull() ? "true" : "false";
+		std::cout << "\tIsFull: " << empty;
+	}
+
+	// Teste insert
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao insert: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		list.insert(s1);
+		std::cout << "\tConteudo da lista: " << list;
+	}
+	// Teste remove
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao remove: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		list.remove(s1);
+		std::cout << "\tConteudo da lista: " << list;
+	}
+	// Teste removeById
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao removeById: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		list.removeById(18);
+		std::cout << "\tConteudo da lista: " << list;
+	}
+	// Teste removeByName
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao removeByName: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		list.removeByName("Ricardo");
+		std::cout << "\tConteudo da lista: " << list;
+	}
+	// Teste clear
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao clear: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		Soldier s2 = Soldier("Paulo", 19);
+		Soldier s3 = Soldier("Gabriel", 20);
+		list.insert(s1);
+		list.insert(s2);
+		list.insert(s3);
+		std::cout << "\tConteudo da lista (antes do clear): " << list << std::endl;
+		list.clear();
+		std::cout << "\tConteudo da lista (depois do clear): " << list;
+	}
+	// Teste find
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao find: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		std::cout << "\tConteudo da lista: " << list << std::endl;
+		std::string found = list.find(s1) ? "true" : "false";
+		std::cout << "\tEncontrou antes de adicionar: " << found << std::endl;
+		list.insert(s1);
+		found = list.find(s1) ? "true" : "false";
+		std::cout << "\tEncontrou depois de adicionar: " << found << std::endl;
+		std::cout << "\tConteudo da lista: " << list;
+	}
+	// Teste findById
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao findById: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		list.insert(s1);
+		std::cout << "\tConteudo da lista: " << list;
+		Soldier soldier = list.findById(18);
+		std::cout << "\n\tSoldado: " << soldier;
+	}
+	// Teste findByName
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao findByName: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		list.insert(s1);
+		std::cout << "\tConteudo da lista: " << list;
+		Soldier soldier = list.findByName("Ricardo");
+		std::cout << "\n\tSoldado: " << soldier;
+	}
+	// Teste findByPosition
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao findByPosition: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		Soldier s2 = Soldier("Paulo", 19);
+		Soldier s3 = Soldier("Gabriel", 20);
+
+		list.insert(s1);
+		list.insert(s2);
+		list.insert(s3);
+
+		std::cout << "\tConteudo da lista: " << list;
+
+		Soldier soldier1 = list.findByPosition(0);
+		Soldier soldier2 = list.findByPosition(1);
+		Soldier soldier3 = list.findByPosition(2);
+
+		std::cout << "\n\tSoldado 1: " << soldier1 << std::endl;
+		std::cout << "\tSoldado 2: " << soldier2 << std::endl;
+		std::cout << "\tSoldado 3: " << soldier3;
+	}
+
+	// Teste findPosition
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao findPosition: " << std::endl;
+		Soldier s1 = Soldier("Ricardo", 18);
+		Soldier s2 = Soldier("Paulo", 19);
+		Soldier s3 = Soldier("Gabriel", 20);
+
+		list.insert(s1);
+		list.insert(s2);
+		list.insert(s3);
+
+		std::cout << "\tConteudo da lista: " << list;
+
+		unsigned int pos1 = list.findPosition(s1);
+		unsigned int pos2 = list.findPosition(s2);
+		unsigned int pos3 = list.findPosition(s1);
+
+		std::cout << "\n\tSoldado Ricardo: " << pos1 << std::endl;
+		std::cout << "\tSoldado Paulo: " << pos2 << std::endl;
+		std::cout << "\tSoldado Gabriel: " << pos3;
+	}
+	// Teste getSize
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao getSize: " << std::endl;
+
+		Soldier s1 = Soldier("Ricardo", 18);
+		Soldier s2 = Soldier("Paulo", 19);
+		Soldier s3 = Soldier("Gabriel", 20);
+
+		list.insert(s1);
+		list.insert(s2);
+		list.insert(s3);
+
+		std::cout << "\tTamanho da lista: " << list.getSize();
+	}
+	// Teste toString
+	{
+		List list = List();
+		std::cout << std::endl << "Teste da operacao toString: " << std::endl;
+
+		Soldier s1 = Soldier("Ricardo", 18);
+		Soldier s2 = Soldier("Paulo", 19);
+		Soldier s3 = Soldier("Gabriel", 20);
+
+		list.insert(s1);
+		list.insert(s2);
+		list.insert(s3);
+
+		std::cout << "\tConteudo da lista:" << list.toString();
+	}
+	// Teste overload operador <<
+	{
+		List list = List();
+		std::cout << std::endl << "Teste do overload do operador << : " << std::endl;
+
+		Soldier s1 = Soldier("Ricardo", 18);
+		Soldier s2 = Soldier("Paulo", 19);
+		Soldier s3 = Soldier("Gabriel", 20);
+
+		list.insert(s1);
+		list.insert(s2);
+		list.insert(s3);
+
+		std::cout << "\tConteudo da lista:" << list;
+	}
+
+	std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+	system("pause");
 }

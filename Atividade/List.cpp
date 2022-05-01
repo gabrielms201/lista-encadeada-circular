@@ -1,8 +1,18 @@
+/*
+LICAO LISTA ENCADEADA CIRCULAR - ESTRUTURA DE DADOS
+GRUPO:
+
+MAYARA MENEGHETTI HONDA                  :  32152280
+PAULO HENRIQUE BRAGA CECHINEL            :  32151128
+RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
+
+*/
+
 #include "List.h"
 
 // Node Class
 
-// Construtor do Nó
+// Construtor do NÃ³
 Node::Node(TYPE& data, Node* nextNode)
 	: _data(data), _nextNode(nextNode) {}
 
@@ -21,12 +31,12 @@ List::~List()
 {
 	clear();
 }
-// Verifica se a lista está vazia
+// Verifica se a lista estÃ¡ vazia
 bool List::isEmpty() const
 {
 	return _size == 0;
 }
-// Verifica se a lista está cheia
+// Verifica se a lista estÃ¡ cheia
 bool List::isFull() const
 {
 	return false;
@@ -36,11 +46,11 @@ bool List::insert(TYPE& data)
 {
 	if (find(data))
 	{
-		std::cout << "Não pode existir um soldado com mesmo nome e ID!" << std::endl;
+		std::cout << "NÃ£o pode existir um soldado com mesmo nome e ID!" << std::endl;
 		return false;
 	}
 	Node* node = new Node(data, nullptr);
-	// Caso a lista estiver vazia, então adicionar o nó na cabeça e fazer ele apontar pra ele mesmo
+	// Caso a lista estiver vazia, entÃ£o adicionar o nÃ³ na cabeÃ§a e fazer ele apontar pra ele mesmo
 	if (isEmpty())
 	{
 		_head = node;
@@ -48,7 +58,7 @@ bool List::insert(TYPE& data)
 		_size++;
 		return true;
 	}
-	// Caso o contrário, andar até o final da lista, apontar pro novo elemento e fazer o novo elemento apontar pra cabeça
+	// Caso o contrÃ¡rio, andar atÃ© o final da lista, apontar pro novo elemento e fazer o novo elemento apontar pra cabeÃ§a
 	Node* ptr = _head;
 	while (ptr->getNextNode() != _head)
 	{
@@ -70,12 +80,12 @@ bool List::remove(TYPE& data)
 	Node* ptr = _head;
 	Node* bkpPtr = nullptr;
 
-	// Se a própria cabeça já guarda o elemento que precisamos, apenas removemos ele:
+	// Se a prÃ³pria cabeÃ§a jÃ¡ guarda o elemento que precisamos, apenas removemos ele:
 	if (ptr->getData() == data)
 	{
 		_head = ptr->getNextNode();
 		
-		// Agora precisamos percorrer a lista para fazer com que o último elemento aponte para a nova cabeça:
+		// Agora precisamos percorrer a lista para fazer com que o Ãºltimo elemento aponte para a nova cabeÃ§a:
 		bkpPtr = _head;
 		while (bkpPtr->getNextNode() != ptr && bkpPtr->getData() != data)
 		{
@@ -87,19 +97,19 @@ bool List::remove(TYPE& data)
 		delete ptr;
 		return true;
 	}
-	// Se esse não for o caso, a gente "anda" até encontrar (ou não), o elemento dado
+	// Se esse nÃ£o for o caso, a gente "anda" atÃ© encontrar (ou nÃ£o), o elemento dado
 	while (ptr->getNextNode() != _head && ptr->getData() != data)
 	{
 		bkpPtr = ptr;
 		ptr = ptr->getNextNode();
 	}
 
-	// Se o próximo nó for igual a cabeça, e o elemento for diferente do procurado, então não encontramos
+	// Se o prÃ³ximo nÃ³ for igual a cabeÃ§a, e o elemento for diferente do procurado, entÃ£o nÃ£o encontramos
 	if (ptr->getNextNode() == _head && ptr->getData() != data)
 	{
 		return false;
 	}
-	// Caso encontramos, apenas precisamos apontar o nó anterior para o próximo do que desejamos remover
+	// Caso encontramos, apenas precisamos apontar o nÃ³ anterior para o prÃ³ximo do que desejamos remover
 	bkpPtr->setNextNode(ptr->getNextNode());
 	_size--;
 	delete ptr;
@@ -116,12 +126,12 @@ bool List::removeById(unsigned int id)
 	Node* ptr = _head;
 	Node* bkpPtr = nullptr;
 
-	// Se a própria cabeça já guarda o elemento que precisamos, apenas removemos ele:
+	// Se a prÃ³pria cabeÃ§a jÃ¡ guarda o elemento que precisamos, apenas removemos ele:
 	if (ptr->getData().getId() == id)
 	{
 		_head = ptr->getNextNode();
 
-		// Agora precisamos percorrer a lista para fazer com que o último elemento aponte para a nova cabeça:
+		// Agora precisamos percorrer a lista para fazer com que o Ãºltimo elemento aponte para a nova cabeÃ§a:
 		bkpPtr = _head;
 		while (bkpPtr->getNextNode() != ptr && bkpPtr->getData().getId() != id)
 		{
@@ -133,19 +143,19 @@ bool List::removeById(unsigned int id)
 		delete ptr;
 		return true;
 	}
-	// Se esse não for o caso, a gente "anda" até encontrar (ou não), o elemento dado
+	// Se esse nÃ£o for o caso, a gente "anda" atÃ© encontrar (ou nÃ£o), o elemento dado
 	while (ptr->getNextNode() != _head && ptr->getData().getId() != id)
 	{
 		bkpPtr = ptr;
 		ptr = ptr->getNextNode();
 	}
 
-	// Se o próximo nó for igual a cabeça, e o elemento for diferente do procurado, então não encontramos
+	// Se o prÃ³ximo nÃ³ for igual a cabeÃ§a, e o elemento for diferente do procurado, entÃ£o nÃ£o encontramos
 	if (ptr->getNextNode() == _head && ptr->getData().getId() != id)
 	{
 		return false;
 	}
-	// Caso encontramos, apenas precisamos apontar o nó anterior para o próximo do que desejamos remover
+	// Caso encontramos, apenas precisamos apontar o nÃ³ anterior para o prÃ³ximo do que desejamos remover
 	bkpPtr->setNextNode(ptr->getNextNode());
 	_size--;
 	delete ptr;
@@ -161,12 +171,12 @@ bool List::removeByName(std::string name)
 	Node* ptr = _head;
 	Node* bkpPtr = nullptr;
 
-	// Se a própria cabeça já guarda o elemento que precisamos, apenas removemos ele:
+	// Se a prÃ³pria cabeÃ§a jÃ¡ guarda o elemento que precisamos, apenas removemos ele:
 	if (ptr->getData().getName() == name)
 	{
 		_head = ptr->getNextNode();
 
-		// Agora precisamos percorrer a lista para fazer com que o último elemento aponte para a nova cabeça:
+		// Agora precisamos percorrer a lista para fazer com que o Ãºltimo elemento aponte para a nova cabeÃ§a:
 		bkpPtr = _head;
 		while (bkpPtr->getNextNode() != ptr && bkpPtr->getData().getName() != name)
 		{
@@ -178,19 +188,19 @@ bool List::removeByName(std::string name)
 		delete ptr;
 		return true;
 	}
-	// Se esse não for o caso, a gente "anda" até encontrar (ou não), o elemento dado
+	// Se esse nÃ£o for o caso, a gente "anda" atÃ© encontrar (ou nÃ£o), o elemento dado
 	while (ptr->getNextNode() != _head && ptr->getData().getName() != name)
 	{
 		bkpPtr = ptr;
 		ptr = ptr->getNextNode();
 	}
 
-	// Se o próximo nó for igual a cabeça, e o elemento for diferente do procurado, então não encontramos
+	// Se o prÃ³ximo nÃ³ for igual a cabeÃ§a, e o elemento for diferente do procurado, entÃ£o nÃ£o encontramos
 	if (ptr->getNextNode() == _head && ptr->getData().getName() != name)
 	{
 		return false;
 	}
-	// Caso encontramos, apenas precisamos apontar o nó anterior para o próximo do que desejamos remover
+	// Caso encontramos, apenas precisamos apontar o nÃ³ anterior para o prÃ³ximo do que desejamos remover
 	bkpPtr->setNextNode(ptr->getNextNode());
 	_size--;
 	delete ptr;
@@ -199,7 +209,7 @@ bool List::removeByName(std::string name)
 // Limpa a lista
 bool List::clear()
 {
-	// Se já estiver vazio, retornar true
+	// Se jÃ¡ estiver vazio, retornar true
 	if (isEmpty())
 	{
 		return true;
@@ -249,7 +259,8 @@ Soldier& List::findById(unsigned int id) const
 {
 	if (isEmpty())
 	{
-		assert(0); // Soldado não encontrado
+		// Soldado nÃ£o encontrado (lista vazia)
+		throw std::range_error("Lista Vazia!");
 	}
 	Node* ptr = _head;
 	if (ptr->getData().getId() == id)
@@ -264,14 +275,17 @@ Soldier& List::findById(unsigned int id) const
 	{
 		return ptr->getData();
 	}
-	assert(0); // // Soldado não encontrado
+	// Soldado nÃ£o encontrado
+	std::string str = "Soldado nao encontrado, id: " + id;
+	throw std::range_error(str);
 }
 // Encontra o soldado com o nome dado
 Soldier& List::findByName(std::string name) const
 {
 	if (isEmpty())
 	{
-		assert(0);
+		// Soldado nÃ£o encontrado (lista vazia)
+		throw std::range_error("Lista Vazia");
 	}
 	Node* ptr = _head;
 	if (ptr->getData().getName() == name)
@@ -286,9 +300,11 @@ Soldier& List::findByName(std::string name) const
 	{
 		return ptr->getData();
 	}
-	assert(0);
+	// Soldado nÃ£o encontrado
+	std::string str = "Soldado nao encontrado: " + name;
+	throw std::range_error(str);
 }
-// Encontra o soldado na posição X
+// Encontra o soldado na posiÃ§Ã£o X
 Soldier& List::findByPosition(unsigned int position) const
 {
 	Node* ptr = _head;
@@ -302,9 +318,11 @@ Soldier& List::findByPosition(unsigned int position) const
 		count++;
 		ptr = ptr->getNextNode();
 	} while (ptr != _head);
-	assert(0);
+	// Soldado nÃ£o encontrado
+	std::string str = "Soldado nao encontrado na posicao: " + position;
+	throw std::range_error(str);
 }
-// Encontra a posição do soldado
+// Encontra a posiÃ§Ã£o do soldado
 unsigned int List::findPosition(Soldier& soldier) const
 {
 	Node* ptr = _head;
@@ -318,9 +336,11 @@ unsigned int List::findPosition(Soldier& soldier) const
 		count++;
 		ptr = ptr->getNextNode();
 	} while (ptr != _head);
-	assert(0);
+	// Soldado nÃ£o encontrado
+	std::string str = "Soldado nao encontrado: " + soldier.getName();
+	throw std::range_error(str);
 }
-// Converte o conteúdo da lista para string
+// Converte o conteÃºdo da lista para string
 std::string List::toString() const
 {
 	if (isEmpty())
@@ -336,7 +356,7 @@ std::string List::toString() const
 		ss << ";";
 		ptr = ptr->getNextNode();
 	}
-	// Para o último nó:
+	// Para o Ãºltimo nÃ³:
 	ss << ptr->getData();
 
 	return ss.str();
