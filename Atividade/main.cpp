@@ -298,20 +298,20 @@ void menu()
 	List list = List();
 	std::cout << "MENU" << std::endl;
 	int qnt = 5;
-	Soldier soldier(0, 0);
-	unsigned int num;
-	std::string str;
+
 	for (int i = 0; i < qnt; i++)
 	{
 		std::cout << "(" << i+1 << "/" << qnt << ")" << " Inserir Elemento na Lista : " << std::endl;
 
 		std::cout << "Valor do inteiro: ";
+		unsigned int num;
 		std::cin >> num;
 
 		std::cout << "Valor da string: ";
+		std::string str;
 		std::cin >> str;
 
-		soldier = Soldier(str.c_str(), num);
+		Soldier soldier = Soldier(str.c_str(), num);
 		list.insert(soldier);
 
 		std::cout << "Valor da lista: " << list.toString(true) << std::endl;

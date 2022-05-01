@@ -46,7 +46,7 @@ bool List::insert(TYPE& data)
 {
 	if (find(data))
 	{
-		std::cout << "Não pode existir um soldado com mesmo nome e ID!" << std::endl;
+		std::cout << "Nao pode existir um soldado com mesmo nome e ID!" << std::endl;
 		return false;
 	}
 	Node* node = new Node(data, nullptr);

@@ -16,11 +16,11 @@ RICARDO GABRIEL MARQUES DOS SANTOS RUIZ  :  32134908
 class Soldier
 {
 public:
-	Soldier(const char* name, unsigned int id);
+	Soldier(std::string name, unsigned int id);
 	std::string getName() const { return _name; }
 	unsigned int getId() const { return _id; }
 private:
-	const char* _name;
+	std::string _name;
 	unsigned int _id;
 };
 
