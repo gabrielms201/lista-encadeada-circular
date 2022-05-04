@@ -40,11 +40,7 @@ inline bool operator == (const Soldier& s1, const Soldier& s2)
 
 inline bool operator != (const Soldier& s1, const Soldier& s2)
 {
-	if (s1.getId() != s2.getId() || s1.getName() != s2.getName())
-	{
-		return true;
-	}
-	return false;
+	return !(s1 == s2);
 }
 
 
