@@ -59,7 +59,7 @@ bool List::insert(TYPE& data)
 		_size++;
 		return true;
 	}
-	// Caso o contrário, andar até o final da lista, apontar pro novo elemento e fazer o novo elemento apontar pra cabeça
+	// Caso o contrario, inserir na cauda
 	Node* ptr = _tail;
 	
 	ptr->setNextNode(node);
