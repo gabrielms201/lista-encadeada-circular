@@ -62,6 +62,7 @@ public:
 private:
 	unsigned int _size;
 	Node* _head;
+	Node* _tail;
 };
 
 inline std::ostream& operator <<(std::ostream& str, const List& list)

@@ -54,18 +54,17 @@ bool List::insert(TYPE& data)
 	if (isEmpty())
 	{
 		_head = node;
+		_tail = node;
 		_head->setNextNode(_head);
 		_size++;
 		return true;
 	}
 	// Caso o contrário, andar até o final da lista, apontar pro novo elemento e fazer o novo elemento apontar pra cabeça
-	Node* ptr = _head;
-	while (ptr->getNextNode() != _head)
-	{
-		ptr = ptr->getNextNode();
-	}
+	Node* ptr = _tail;
+	
 	ptr->setNextNode(node);
 	node->setNextNode(_head);
+	_tail = node;
 	_size++;
 	return true;
 }
