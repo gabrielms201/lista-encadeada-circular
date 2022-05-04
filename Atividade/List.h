@@ -53,10 +53,10 @@ public:
 	bool removeByName(std::string name);
 	bool clear();
 	bool find(const TYPE& data) const;
-	Soldier& findById(unsigned int id) const;
-	Soldier& findByName(std::string name) const;
-	Soldier& findByPosition(unsigned int position) const;
-	unsigned int findPosition(Soldier& soldier) const;
+	TYPE& findById(unsigned int id) const;
+	TYPE& findByName(std::string name) const;
+	TYPE& findByPosition(unsigned int position) const;
+	unsigned int findPosition(TYPE& data) const;
 	unsigned int getSize() const { return _size; }
 	std::string toString(const bool verbose = false) const;
 private:

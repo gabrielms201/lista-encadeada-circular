@@ -255,7 +255,7 @@ bool List::find(const TYPE &data) const
 	return false;
 }
 // Procura na lista um soldado pelo ID
-Soldier& List::findById(unsigned int id) const
+TYPE& List::findById(unsigned int id) const
 {
 	if (isEmpty())
 	{
@@ -280,7 +280,7 @@ Soldier& List::findById(unsigned int id) const
 	throw std::range_error(str);
 }
 // Encontra o soldado com o nome dado
-Soldier& List::findByName(std::string name) const
+TYPE& List::findByName(std::string name) const
 {
 	if (isEmpty())
 	{
@@ -305,7 +305,7 @@ Soldier& List::findByName(std::string name) const
 	throw std::range_error(str);
 }
 // Encontra o soldado na posição X
-Soldier& List::findByPosition(unsigned int position) const
+TYPE& List::findByPosition(unsigned int position) const
 {
 	Node* ptr = _head;
 	int count = 0;
@@ -323,13 +323,13 @@ Soldier& List::findByPosition(unsigned int position) const
 	throw std::range_error(str);
 }
 // Encontra a posição do soldado
-unsigned int List::findPosition(Soldier& soldier) const
+unsigned int List::findPosition(TYPE& data) const
 {
 	Node* ptr = _head;
 	int count = 0;
 	do
 	{
-		if (ptr->getData() == soldier)
+		if (ptr->getData() == data)
 		{
 			return count;
 		}
@@ -337,7 +337,7 @@ unsigned int List::findPosition(Soldier& soldier) const
 		ptr = ptr->getNextNode();
 	} while (ptr != _head);
 	// Soldado não encontrado
-	std::string str = "Soldado nao encontrado: " + soldier.getName();
+	std::string str = "Soldado nao encontrado: " + data.getName();
 	throw std::range_error(str);
 }
 // Converte o conteúdo da lista para string
